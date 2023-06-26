@@ -50,7 +50,7 @@ async def get_csv_history(
     history = query_result.all()
 
     csv_data = StringIO()
-    writer = csv.writer(csv_data, delimiter='#')
+    writer = csv.writer(csv_data, delimiter="#")
     writer.writerow(["id", "operation", "result"])
 
     for row in history:
@@ -60,3 +60,8 @@ async def get_csv_history(
     response.headers["Content-Type"] = "text/csv"
 
     return csv_data.getvalue()
+
+
+@app.get("/health")
+def check_health():
+    return {}
